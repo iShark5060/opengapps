@@ -19,6 +19,7 @@ googlecontactssync
 googlefeedback
 googleonetimeinitializer
 googlepartnersetup
+googletts
 gmscore
 gsfcore
 gsflogin
@@ -31,7 +32,6 @@ gappssuper="androidforwork
 androidpay
 dmagent
 earth
-gcs
 hindi
 japanese
 korean
@@ -72,8 +72,7 @@ youtube"
 gappsmicro="calendargoogle
 exchangegoogle
 gmail
-googlenow
-googletts"
+googlenow"
 
 gappsnano="facedetect
 faceunlock
@@ -158,6 +157,7 @@ get_package_info(){
   packagefiles=""
   case "$1" in
     framework)                packagetype="Core"; packagefiles="etc framework";;
+    gcs)                      packagetype="Core"; packagename="com.google.android.apps.gcs"; packagetarget="priv-app/GCS";;
     gmscore)                  packagetype="Core"; packagename="com.google.android.gms"; packagetarget="priv-app/PrebuiltGmsCore";;
     googlecontactssync)       packagetype="Core"; packagename="com.google.android.syncadapters.contacts"; packagetarget="app/GoogleContactsSyncAdapter";;
     googlebackuptransport)    packagetype="Core"; packagename="com.google.android.backuptransport"; packagetarget="priv-app/GoogleBackupTransport";;
@@ -166,6 +166,7 @@ get_package_info(){
     gsflogin)                 packagetype="Core"; packagename="com.google.android.gsf.login"; packagetarget="priv-app/GoogleLoginService";;
     googleonetimeinitializer) packagetype="Core"; packagename="com.google.android.onetimeinitializer"; packagetarget="priv-app/GoogleOneTimeInitializer";;
     googlepartnersetup)       packagetype="Core"; packagename="com.google.android.partnersetup"; packagetarget="priv-app/GooglePartnerSetup";;
+    googletts)                packagetype="Core"; packagename="com.google.android.tts"; packagetarget="app/GoogleTTS";;
     setupwizard)              packagetype="Core"; packagename="com.google.android.setupwizard"; packagetarget="priv-app/SetupWizard";;
     vending)                  packagetype="Core"; packagename="com.android.vending"; packagetarget="priv-app/Phonesky";;
 
@@ -198,7 +199,6 @@ get_package_info(){
     googlenow)      packagetype="GApps"; packagename="com.google.android.launcher"; packagetarget="app/GoogleHome";;
     photos)         packagetype="GApps"; packagename="com.google.android.apps.photos"; packagetarget="app/Photos";;
     googleplus)     packagetype="GApps"; packagename="com.google.android.apps.plus"; packagetarget="app/PlusOne";;
-    googletts)      packagetype="GApps"; packagename="com.google.android.tts"; packagetarget="app/GoogleTTS";;
     hangouts)       packagetype="GApps"; packagename="com.google.android.talk"; packagetarget="app/Hangouts";;
     keep)           packagetype="GApps"; packagename="com.google.android.keep"; packagetarget="app/PrebuiltKeep";;
     keyboardgoogle) packagetype="GApps"; packagename="com.google.android.inputmethod.latin"; packagetarget="app/LatinImeGoogle";;
@@ -222,7 +222,6 @@ get_package_info(){
     androidpay)     packagetype="GApps"; packagename="com.google.android.apps.walletnfcrel"; packagetarget="app/Wallet";;
     dmagent)        packagetype="GApps"; packagename="com.google.android.apps.enterprise.dmagent"; packagetarget="app/DMAgent";;
     earth)          packagetype="GApps"; packagename="com.google.earth"; packagetarget="app/GoogleEarth";;
-    gcs)            packagetype="GApps"; packagename="com.google.android.apps.gcs"; packagetarget="priv-app/GCS";;
     hindi)          packagetype="GApps"; packagename="com.google.android.apps.inputmethod.hindi"; packagetarget="app/GoogleHindiIME";;
     japanese)       packagetype="GApps"; packagename="com.google.android.inputmethod.japanese"; packagetarget="app/GoogleJapaneseInput";;
     korean)         packagetype="GApps"; packagename="com.google.android.inputmethod.korean"; packagetarget="app/KoreanIME";;
