@@ -73,7 +73,7 @@ makeinstallerdata(){
 pkg_names="'"$SUPPORTEDVARIANTS"'";
 
 # Installer Name (32 chars Total, excluding "")
-installer_name="Open GApps '"$VARIANT"' '"$PLATFORM"' - ";
+installer_name="Shark GApps '"$VARIANT"' '"$PLATFORM"' - ";
 
 req_android_version="'"$PLATFORM"'";
 
@@ -470,7 +470,7 @@ oldscript_list="
 remove_list="${other_list}${privapp_list}${reqd_list}${obsolete_list}${oldscript_list}";
 # _____________________________________________________________________________________________________________________
 #                                             Installer Error Messages
-arch_compat_msg="INSTALLATION FAILURE: This Open GApps package cannot be installed on this\ndevice's architecture. Please download the correct version for your device.\n";
+arch_compat_msg="INSTALLATION FAILURE: This Shark GApps package cannot be installed on this\ndevice's architecture. Please download the correct version for your device.\n";
 camera_sys_msg="WARNING: Google Camera has/will not be installed as requested. Google Camera\ncan only be installed during a Clean Install or as an update to an existing\nGApps Installation.\n";
 camera_compat_msg="WARNING: Google Camera has/will not be installed as requested. Google Camera is\nNOT compatible with your device if installed in the system partition. Try\ninstalling from the Play Store instead.\n";
 faceunlock_msg="NOTE: FaceUnlock can only be installed on devices with a front facing camera.\n";
@@ -480,7 +480,7 @@ nokeyboard_msg="NOTE: The Stock/AOSP keyboard was NOT removed as requested to en
 nolauncher_msg="NOTE: The Stock/AOSP Launcher was NOT removed as requested to ensure your device\nwas not accidentally left with no Launcher. If this was your intention, you can\nadd 'Override' to your gapps-config to override this protection.\n";
 nomms_msg="NOTE: The Stock/AOSP MMS app was NOT removed as requested to ensure your device\nwas not accidentally left with no way to receive text messages. If this WAS\nintentional, add 'Override' to your gapps-config to override this protection.\n";
 nowebview_msg="NOTE: The Stock/AOSP WebView was NOT removed as requested to ensure your device\nwas not accidentally left with no WebView installed. If this was intentional,\nyou can add 'Override' to your gapps-config to override this protection.\n";
-non_open_gapps_msg="INSTALLATION FAILURE: Open GApps can only be installed on top of an existing\nOpen GApps installation. Since you are currently using another GApps package, you\nwill need to wipe (format) your system partition before installing Open GApps.\n";
+non_open_gapps_msg="INSTALLATION FAILURE: Shark GApps can only be installed on top of an existing\nShark GApps installation. Since you are currently using another GApps package, you\nwill need to wipe (format) your system partition before installing Shark GApps.\n";
 fornexus_open_gapps_msg="NOTE: The installer detected that you already have Stock ROM GApps installed.\nThe installer will now continue, but please be aware that there could be problems.\n";
 recovery_compression_msg="INSTALLATION FAILURE: Your ROM uses transparent compression, but your recovery\ndoes not support this feature, resulting in corrupt files.\nPlease update your recovery before flashing ANY package to prevent corruption.\n";
 rom_version_msg="INSTALLATION FAILURE: This GApps package can only be installed on a $req_android_version.x ROM.\n";
