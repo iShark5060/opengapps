@@ -26,8 +26,8 @@ tee "$build/META-INF/com/google/android/aroma-config" > /dev/null <<'EOFILE'
 #
 
 #ROM Info
-ini_set("rom_name", "Open GApps");
-ini_set("rom_author", "Open GApps Team");
+ini_set("rom_name", "Shark GApps");
+ini_set("rom_author", "Shark5060");
 ini_set("rom_date", zipprop("g.prop", "ro.addon.open_version"));
 ini_set("text_quit", "Exit");
 ini_set("text_next", "Next");
@@ -69,7 +69,7 @@ theme("material_green");
 viewbox(
   "Welcome",
 
-  "With AROMA Open GApps you can choose which GApps to install!\n\n\n\n" +
+  "With AROMA Shark GApps you can choose which GApps to install!\n\n\n\n" +
   "Package Information\n\n" +
 
     "   Name\t\t: <b><#scrollbar>" + ini_get("rom_name") + "</#></b>\n"+
@@ -89,7 +89,7 @@ viewbox(
 ##############################################
 menubox(
   #-- Title
-    "Open GApps",
+    "Shark GApps",
 
   #-- Sub Title
     "Please select one of the choices below",
@@ -872,7 +872,7 @@ textbox(
 ##############################################
 checkviewbox(
   "Save selections",
-  "Save selections on sdcard or emualted storage: /sdcard/Open-GApps\n\n\n\n\n<b>Do you want to save the selections on sdcard? They will save time in future installations.</b>\n\n",
+  "Save selections on sdcard or emualted storage: /sdcard1/Shark-GApps\n\n\n\n\n<b>Do you want to save the selections on sdcard? They will save time in future installations.</b>\n\n",
   "@welcome",
 
   "Save selections.", "1", "saveselections"
@@ -908,7 +908,7 @@ ini_set("text_next", "Finish");
 checkviewbox(
   "All done!",
   "<b>Congratulation...</b>\n\n\n\n\n" +
-  "Open GApps has been installed into your device.",
+  "Shark GApps has been installed into your device.",
   "@welcome",
 
   "Reboot your device now.", "0", "reboot_it"
