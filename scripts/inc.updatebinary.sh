@@ -117,14 +117,14 @@ exxit() {
     fi;
     ls -alZR /system > /tmp/logs/System_Files_After.txt;
     df -k > /tmp/logs/Device_Space_After.txt;
-    cp -f "$log_folder/open_gapps_log.txt" /tmp/logs;
+    cp -f "$log_folder/shark_gapps_log.txt" /tmp/logs;
     cp -f $b_prop /tmp/logs;
     cp -f /system/addon.d/70-gapps.sh /tmp/logs;
     cp -f $gapps_removal_list "/tmp/logs/gapps-remove_revised.txt";
     cp -f $rec_cache_log /tmp/logs/Recovery_cache.log;
     cp -f $rec_tmp_log /tmp/logs/Recovery_tmp.log;
     cd /tmp;
-    tar -cz -f "$log_folder/open_gapps_debug_logs.tar.gz" logs/*;
+    tar -cz -f "$log_folder/shark_gapps_debug_logs.tar.gz" logs/*;
     cd /;
   fi;
   rm -rf /tmp/*;
@@ -244,7 +244,7 @@ quit() {
   # Copy logs to proper folder (Same as gapps-config or same as Zip)
   ui_print "- Copying Log to $log_folder";
   ui_print " ";
-  cp -f $g_log "$log_folder/open_gapps_log.txt";
+  cp -f $g_log "$log_folder/shark_gapps_log.txt";
   rm -f $g_log;
   set_progress 0.97;
 }
@@ -392,16 +392,16 @@ done;
 for i in "/tmp/aroma/.gapps-config"\
  "$zip_folder/.gapps-config-$device_name"\
  "$zip_folder/gapps-config-$device_name.txt"\
- "/sdcard/Open-GApps/.gapps-config-$device_name"\
- "/sdcard/Open-GApps/gapps-config-$device_name.txt"\
+ "/sdcard1/Shark-GApps/.gapps-config-$device_name"\
+ "/sdcard1/Shark-GApps/gapps-config-$device_name.txt"\
  "$zip_folder/.gapps-config"\
  "$zip_folder/gapps-config.txt"\
- "/sdcard/Open-GApps/.gapps-config"\
- "/sdcard/Open-GApps/gapps-config.txt"\
+ "/sdcard1/Shark-GApps/.gapps-config"\
+ "/sdcard1/Shark-GApps/gapps-config.txt"\
  "$zip_folder/.gapps-config-$device_name.txt"\
- "/sdcard/Open-GApps/.gapps-config-$device_name.txt"\
+ "/sdcard1/Shark-GApps/.gapps-config-$device_name.txt"\
  "$zip_folder/.gapps-config.txt"\
- "/sdcard/Open-GApps/.gapps-config.txt"\
+ "/sdcard1/Shark-GApps/.gapps-config.txt"\
  "/persist/.gapps-config-$device_name"\
  "/persist/gapps-config-$device_name.txt"\
  "/persist/.gapps-config"\
@@ -466,7 +466,7 @@ for field in ro.modversion ro.build.version.incremental; do
   rom_version="non-standard build.prop";
 done;
 
-echo "# Begin Open GApps Install Log" > $g_log;
+echo "# Begin Shark GApps Install Log" > $g_log;
 echo ----------------------------------------------------------------------------- >> $g_log;
 log "ROM Android Version" "$rom_android_version";
 
@@ -500,14 +500,14 @@ tee -a "$build/META-INF/com/google/android/update-binary" > /dev/null <<'EOFILE'
 ); then
   ui_print "***** Incompatible Device Detected *****";
   ui_print " ";
-  ui_print "This Open GApps package cannot be";
+  ui_print "This Shark GApps package cannot be";
   ui_print "installed on this device's architecture.";
   ui_print "Please download the correct version for";
   ui_print "your device: $device_architecture";
   ui_print " ";
   ui_print "******* GApps Installation failed *******";
   ui_print " ";
-  install_note="${install_note}arch_compat_msg"$'\n'; # make note that Open GApps are not compatible with architecture
+  install_note="${install_note}arch_compat_msg"$'\n'; # make note that Shark GApps are not compatible with architecture
   abort "$E_ARCH";
 fi;
 
@@ -528,7 +528,7 @@ if [ -z "$(command -v tar)" ]; then
   ui_print "binary. Please update your recovery";
   ui_print "to the latest version or switch to";
   ui_print "another recovery like TWRP.";
-  ui_print "See:'$log_folder/open_gapps_log.txt'";
+  ui_print "See:'$log_folder/shark_gapps_log.txt'";
   ui_print "for complete details and information.";
   ui_print " ";
   install_note="${install_note}no_tar_message"$'\n'; # make note that there is no TAR support
@@ -544,7 +544,7 @@ case "$EXTRACTFILES" in
   ui_print "binary. Please update your recovery";
   ui_print "to the latest version or switch to";
   ui_print "another recovery like TWRP.";
-  ui_print "See:'"'"'$log_folder/open_gapps_log.txt'"'"'";
+  ui_print "See:'"'"'$log_folder/shark_gapps_log.txt'"'"'";
   ui_print "for complete details and information.";
   ui_print " ";
   install_note="${install_note}no_xz_message"$'"'\n'"'; # make note that there is no XZ support
@@ -564,7 +564,7 @@ if [ -z "$(tar --help 2>&1 | grep -e "f.*stdin")" ]; then
   ui_print "for the tar binary. Please update your";
   ui_print "recovery to the latest version or";
   ui_print "switch to another recovery like TWRP.";
-  ui_print "See:'"'"'$log_folder/open_gapps_log.txt'"'"'";
+  ui_print "See:'"'"'$log_folder/shark_gapps_log.txt'"'"'";
   ui_print "for complete details and information.";
   ui_print " ";
   install_note="${install_note}no_stdin_message"$'"'\n'"'; # make note that there is no stdin tar support
@@ -660,7 +660,7 @@ log "Install Type" "$install_type";
 log "Google Camera Installed¹" "$cameragoogle_inst";
 log "FaceUnlock Compatible" "$faceunlock_compat";
 log "Google Camera Compatible" "$cameragoogle_compat";
-log_close="                  ¹ Previously installed with Open GApps\n$log_close";
+log_close="                  ¹ Previously installed with Shark GApps\n$log_close";
 
 # Determine if a GApps package is installed and
 # the version, type, and whether it's a Open GApps package
@@ -668,20 +668,20 @@ if [ -e /system/priv-app/GoogleServicesFramework/GoogleServicesFramework.apk -a 
   if $(grep -q -e ro.addon.open_version $g_prop); then
     log "Current GApps Version" "$(file_getprop $g_prop ro.addon.open_version)";
     if $(grep -q ro.addon.open_type $g_prop); then
-      log "Current Open GApps Package" "$(file_getprop $g_prop ro.addon.open_type)";
+      log "Current Shark GApps Package" "$(file_getprop $g_prop ro.addon.open_type)";
     else
-      log "Current Open GApps Package" "Unknown";
+      log "Current Shark GApps Package" "Unknown";
     fi;
   elif [ -e /system/etc/g.prop ]; then
-    log "Current GApps Version" "NON Open GApps Package Currently Installed (FAILURE)";
+    log "Current GApps Version" "NON Shark GApps Package Currently Installed (FAILURE)";
     ui_print "* Incompatible GApps Currently Installed *";
     ui_print " ";
-    ui_print "This Open GApps package can ONLY be installed";
-    ui_print "on top of an existing installation of Open GApps";
+    ui_print "This Shark GApps package can ONLY be installed";
+    ui_print "on top of an existing installation of Shark GApps";
     ui_print "or a clean AOSP/CyanogenMod ROM installation,";
     ui_print "or a Stock ROM that conforms to Nexus standards.";
     ui_print "You must wipe (format) your system partition";
-    ui_print "and flash your ROM BEFORE installing Open GApps.";
+    ui_print "and flash your ROM BEFORE installing Shark GApps.";
     ui_print " ";
     ui_print "******* GApps Installation failed *******";
     ui_print " ";
@@ -1116,9 +1116,9 @@ if [ "$post_install_size_kb" -lt 0 ]; then
   # We don't have enough system space to install everything user requested
   ui_print "Insufficient storage space available in";
   ui_print "System partition. You may want to use a";
-  ui_print "smaller Open GApps package or consider";
+  ui_print "smaller Shark GApps package or consider";
   ui_print "removing some apps using gapps-config.";
-  ui_print "See:'$log_folder/open_gapps_log.txt'";
+  ui_print "See:'$log_folder/shark_gapps_log.txt'";
   ui_print "for complete details and information.";
   ui_print " ";
   install_note="${install_note}system_space_msg"$'\n'; # make note that there is insufficient space in system to install
