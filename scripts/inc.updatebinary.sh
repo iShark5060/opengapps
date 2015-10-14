@@ -392,16 +392,16 @@ done;
 for i in "/tmp/aroma/.gapps-config"\
  "$zip_folder/.gapps-config-$device_name"\
  "$zip_folder/gapps-config-$device_name.txt"\
- "/sdcard1/Shark-GApps/.gapps-config-$device_name"\
- "/sdcard1/Shark-GApps/gapps-config-$device_name.txt"\
+ "/external_sd/Shark-GApps/.gapps-config-$device_name"\
+ "/external_sd/Shark-GApps/gapps-config-$device_name.txt"\
  "$zip_folder/.gapps-config"\
  "$zip_folder/gapps-config.txt"\
- "/sdcard1/Shark-GApps/.gapps-config"\
- "/sdcard1/Shark-GApps/gapps-config.txt"\
+ "/external_sd/Shark-GApps/.gapps-config"\
+ "/external_sd/Shark-GApps/gapps-config.txt"\
  "$zip_folder/.gapps-config-$device_name.txt"\
- "/sdcard1/Shark-GApps/.gapps-config-$device_name.txt"\
+ "/external_sd/Shark-GApps/.gapps-config-$device_name.txt"\
  "$zip_folder/.gapps-config.txt"\
- "/sdcard1/Shark-GApps/.gapps-config.txt"\
+ "/external_sd/Shark-GApps/.gapps-config.txt"\
  "/persist/.gapps-config-$device_name"\
  "/persist/gapps-config-$device_name.txt"\
  "/persist/.gapps-config"\
