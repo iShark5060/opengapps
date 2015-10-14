@@ -872,7 +872,7 @@ textbox(
 ##############################################
 checkviewbox(
   "Save selections",
-  "Save selections on sdcard or emualted storage: /sdcard1/Shark-GApps\n\n\n\n\n<b>Do you want to save the selections on sdcard? They will save time in future installations.</b>\n\n",
+  "Save selections on sdcard or emualted storage: /external_sd/Shark-GApps\n\n\n\n\n<b>Do you want to save the selections on sdcard? They will save time in future installations.</b>\n\n",
   "@welcome",
 
   "Save selections.", "1", "saveselections"
