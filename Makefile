@@ -38,7 +38,7 @@ $1:
 	$(api = $(word 2, $(subst -, ,$1)))
 	$(variant = $(word 3, $(subst -, ,$1)))
 	@if [ "$(api)" -ge "$(LOWEST_API_$(platform))" ] && [ -n "$(variant)" ] ; then\
-		echo "Generating Open GApps $(variant) package for $(platform) with API level $(api)...";\
+		echo "Generating Shark GApps $(variant) package for $(platform) with API level $(api)...";\
 		$(BUILD_GAPPS) $(platform) $(api) $(variant) 2>&1 | tee $(LOG_BUILD);\
 	elif [ "$(api)" -ge "$(LOWEST_API_$(platform))" ] && [ -z "$(variant)" ] ; then\
 		for variant in $(VARIANTS);do\
