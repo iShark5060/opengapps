@@ -175,5 +175,5 @@ signzip() {
     echo "ERROR: Creating Flashable ZIP-file failed, unsigned file can be found at $unsignedzip"
     exit 1
   fi
-  echo "SUCCESS: Built Open GApps variation $VARIANT with API $API level for $ARCH as $signedzip"
+  echo "SUCCESS: Built Shark GApps variation $VARIANT with API $API level for $ARCH as $signedzip"
 }
