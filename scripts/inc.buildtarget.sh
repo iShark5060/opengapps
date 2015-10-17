@@ -106,7 +106,7 @@ get_fallback_arch(){
 get_supported_variants(){
   case "$1" in
     aroma)          if [ "$API" -ge "22" ]; then
-                      supported_variants="pico nano micro mini full stock super";
+                      supported_variants="pico nano micro mini full stock";
                     else
                       supported_variants="pico nano micro mini full stock";
                     fi;;
@@ -235,6 +235,8 @@ get_package_info(){
     contactsgoogle)   packagetype="GApps"; packagename="com.google.android.contacts"; packagetarget="priv-app/GoogleContacts";;
     dialergoogle)     packagetype="GApps"; packagename="com.google.android.dialer"; packagetarget="priv-app/GoogleDialer";;
     packageinstaller) packagetype="GApps"; packagename="com.google.android.packageinstaller"; packagetarget="priv-app/GooglePackageInstaller";;
+
+    swypelibs)       packagetype="Optional"; packagefiles="$LIBFOLDER/libjni_latinimegoogle.so";;
 
     *)              echo "ERROR! Missing build rule for application with keyword $1"; exit 1;;
   esac
