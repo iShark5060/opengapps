@@ -63,7 +63,7 @@ buildapp(){
   if [ -z "$4" ]; then usearch="$ARCH"
   else usearch="$4"; fi #allows for an override
 
-  if getsourceforapi "$package" "$usearch" "$(basename "$ziplocation")" # Third parameter is the app name
+  if getapksforapi "$package" "$usearch" "$API"
   then
     baseversionname=""
     for dpivariant in $(echo "$sourceapks" | tr ' ' ''); do #we replace the spaces with a special char to survive the for-loop
@@ -101,12 +101,12 @@ buildapp(){
   fi
 }
 
-getsourceforapi() {
-  #this functions finds the highest available acceptable api level for the given architeture
+getapksforapi() {
+  #this functions finds the highest available acceptable apk for a given api and architeture
+  #$1 package, $2 arch, $3 api
   if ! stat --printf='' "$SOURCES/$2/"*"app/$1" 2>/dev/null; then
     return 1 #appname is not there, error!?
   fi
-  appname="$3"
   sourceapks=""
   OLDIFS="$IFS"
   IFS="
@@ -115,18 +115,41 @@ getsourceforapi() {
   for foundapk in $(find $SOURCES/$2/*app/$1 -iname '*.apk' | sed 's!.*/\(.*\)!\1/&!' | sort -r -t/ -k1,1 | cut -d/ -f2-); do
     foundpath="$(dirname "$(dirname "$foundapk")")"
     api="$(basename "$foundpath")"
-    if [ "$api" -le "$API" ]; then
+    if [ "$api" -le "$3" ]; then
       #We need to keep them sorted
-      sourceapks="$(find "$foundpath" -name "*.apk" | sed 's!.*/\(.*\)!\1/&!' | sort -r -t/ -k1,1 | cut -d/ -f2-)"
+      sourceapks="$(find "$foundpath" -iname '*.apk' | sed 's!.*/\(.*\)!\1/&!' | sort -r -t/ -k1,1 | cut -d/ -f2-)"
       break
     fi
   done
   IFS="$OLDIFS"
   if [ -z "$sourceapks" ]; then
-    echo "WARNING: No APK found compatible with API level $API for package $appname on $2, lowest found: $api"
+    echo "WARNING: No APK found compatible with API level $3 for package $1 on $2, lowest found: $api"
     return 1 #error
   fi
   #$sourceapks and $api have the useful returnvalues
+  return 0 #return that it was a success
+}
+
+getlibforapi() {
+  #this functions finds the highest available acceptable lib for a given api and architeture
+  #$1 libname, $2 arch, $3 api
+  sourcelib=""
+  OLDIFS="$IFS"
+  IFS="
+"  #We set IFS to newline here so that spaces can survive the for loop
+  for foundlib in $(find $SOURCES/$2/lib*/ -iname "$1.so" | sort -r); do
+    api="$(basename "$(dirname "$foundlib")")"
+    if [ "$api" -le "$3" ]; then
+      sourcelib="$foundlib"
+      break
+    fi
+  done
+  IFS="$OLDIFS"
+  if [ -z "$sourcelib" ]; then
+    echo "WARNING: No lib found compatible with API level $3 for lib $1 on $2, lowest found: $api"
+    return 1 #error
+  fi
+  #$sourcelib and $api have the useful returnvalues
   return 0 #return that it was a success
 }
 
